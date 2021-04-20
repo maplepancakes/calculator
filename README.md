@@ -1,2 +1,2 @@
-# calculator
-The ultimate number cruncher
+# PROJECT STATUS: In Progress
+
