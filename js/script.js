@@ -16,6 +16,10 @@ So how should it work?
 1. If user clicks/keys in the following inputs 
     (1, 2, 3, 4, 5, 6, 7, 8, 9, 0, .)
     - The input should be on display
+    - If the first character is '0', then no other zeroes can
+        can be inputted
+    - If there is already a '.', then no other periods can be
+        inputted
 
 2. When user clicks/keys in one of the following inputs
     (/, *, +, -)
@@ -41,16 +45,14 @@ So how should it work?
 // Initialize variable for calculator display
 let value = 0;
 
+
 function calcDisplay()
 {
-    const displayContainer = document.querySelector(`#display-container`);
-    const display = document.createElement(`div`);
+    const display = document.querySelector(`#display`);
 
-    display.setAttribute(`id`, `display`);
-    display.textContent = value;
-
-    displayContainer.appendChild(display);
+    display.textContent = 0;
 }
+
 
 function updateDisplay()
 {
@@ -65,7 +67,11 @@ function updateDisplay()
     const backspace = document.querySelector(`#backspace`);
     const clear = document.querySelector(`#clear`);
 
-    console.log(input);
+    // Create a click event
+    // Create an array to store clicked inputs
+    // Loop over all the node list
+    // Add the text content of the clicked input to the array
+    // Update the display by append
 }
 
 // Function call
