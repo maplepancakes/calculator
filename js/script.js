@@ -74,13 +74,25 @@ function inputCalc()
             // Checks that display does not exceed more than 15 characters
             else if (inputArray.length < 15)
             {
-                // Replaces 0 in display with another input
-                if (inputArray[0] === `0`)
+                // If first input is a `.`: -
+                // 1. Add a `.` to the array
+                // 2. Do not remove `0` from the array
+                if (inputArray[0] === `0` && inputArray.length === 1 && input[i].textContent === `.`)
                 {
-                    inputArray.pop();
+                    inputArray.push(input[i].textContent);
                 }
+                // If first input is not a `.`, replace `0` with the content of the first input
+                else if (inputArray[0] === `0` && inputArray[1] !== `.`)
+                {
+                    inputArray.shift();
 
-                inputArray.push(input[i].textContent);
+                    inputArray.push(input[i].textContent);
+                }
+                // Adds input content into array
+                else
+                {
+                    inputArray.push(input[i].textContent);
+                }
             }
 
             updateDisplay();
