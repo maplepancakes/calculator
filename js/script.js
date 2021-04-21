@@ -52,5 +52,22 @@ function calcDisplay()
     displayContainer.appendChild(display);
 }
 
+function updateDisplay()
+{
+    /*
+    Three conditional statements: -
+    1. For '0-9' and '.', update display accordingly
+    2. For backspace, truncate one character from the right
+    3. For clear, clear entire display
+    */
+
+    const input = document.querySelectorAll(`.input`);
+    const backspace = document.querySelector(`#backspace`);
+    const clear = document.querySelector(`#clear`);
+
+    console.log(input);
+}
+
 // Function call
 calcDisplay();
+updateDisplay();
