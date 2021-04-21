@@ -1,0 +1,84 @@
+body
+{
+    background-color: #FFA000;
+    font-family: Arial;
+    display: flex;
+    justify-content: center;
+    margin-top: 10vh;
+}
+
+#main-container
+{
+    background-color: #424242;
+    width: 500px;
+    height: 650px;
+    border-radius: 10px;
+}
+
+#header-container
+{
+    padding-top: 75px;
+}
+
+#display-container
+{
+    width: 500x;
+    height: 100px;
+    background-color: #616161;
+    border: 10px solid #424242;
+}
+
+#buttons-container
+{
+    display: grid;
+    grid-template-areas:
+    "clear backspace backspace divide"
+    "seven eight nine multiply"
+    "four five six subtract"
+    "one two three add"
+    "zero zero point equal";
+    background-color: #424242;
+    grid-gap: 10px;
+    padding: 10px;
+}
+
+
+#buttons-container button
+{
+    text-align: center;
+    font-size: 25px;
+    background-color: #616161;
+    padding: 20px 0;
+    color: white;
+    border: 1px solid #FFA000;
+}
+
+#buttons-container button:hover
+{
+    cursor: pointer;
+    opacity: 0.8;
+}
+
+#buttons-container button:active
+{
+    border: 1px solid #FF6F00;
+}
+
+#clear {grid-area: clear;}
+#backspace {grid-area: backspace;}
+#divide {grid-area: divide;}
+#seven {grid-area: seven;}
+#eight {grid-area: eight;}
+#nine {grid-area: nine;}
+#multiply {grid-area: multiply;}
+#four {grid-area: four;}
+#five {grid-area: five;}
+#six {grid-area: six;}
+#subtract {grid-area: subtract;}
+#one {grid-area: one;}
+#two {grid-area: two;}
+#three {grid-area: three;}
+#add {grid-area: add;}
+#zero {grid-area: zero;}
+#point {grid-area: point;}
+#equal {grid-area: equal;}
