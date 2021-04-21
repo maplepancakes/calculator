@@ -71,13 +71,30 @@ function inputCalc()
                 return;
             }
 
-            // Checks that display does not exceed more than 15 characters
-            else if (inputArray.length < 15)
+            // Checks if there are more than one `.` input in the display
+            let dupArray = [];
+            for (let k = 0; k < inputArray.length; k++)
             {
+                if (inputArray[k] === `.`)
+                {
+                    dupArray.push(inputArray[k]);
+                }
+            }
+
+            // Checks that display does not exceed more than 15 characters
+            if (inputArray.length < 15)
+            {
+                // If there is more than one `.` input, disable the `.` button
+                if (dupArray.length > 0 && input[i].textContent === `.`)
+                {
+                    const decimalInput = document.querySelector(`#point`);
+
+                    decimalInput.setAttribute(`disabled`, `true`);
+                }
                 // If first input is a `.`: -
                 // 1. Add a `.` to the array
                 // 2. Do not remove `0` from the array
-                if (inputArray[0] === `0` && inputArray.length === 1 && input[i].textContent === `.`)
+                else if (inputArray[0] === `0` && inputArray.length === 1 && input[i].textContent === `.`)
                 {
                     inputArray.push(input[i].textContent);
                 }
