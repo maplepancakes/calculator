@@ -22,9 +22,20 @@ body
 #display-container
 {
     width: 500x;
-    height: 100px;
+    height: 80px;
     background-color: #616161;
     border: 10px solid #424242;
+    display: flex;
+    justify-content: end;
+    padding-right: 10px;
+    padding-top: 20px;
+}
+
+#display
+{
+    font-family: Raleway;
+    color: white;
+    font-size: 50px;
 }
 
 #buttons-container
