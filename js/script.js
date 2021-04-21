@@ -42,17 +42,8 @@ So how should it work?
 5. If user clicks/keys in on (CLEAR), the display is reset to a value of 0
 */
 
-// Initialize variable for calculator display
+// Initialize global variable 
 let value = 0;
-
-
-function calcDisplay()
-{
-    const display = document.querySelector(`#display`);
-
-    display.textContent = 0;
-}
-
 
 function updateDisplay()
 {
@@ -63,17 +54,37 @@ function updateDisplay()
     3. For clear, clear entire display
     */
 
-    const input = document.querySelectorAll(`.input`);
-    const backspace = document.querySelector(`#backspace`);
-    const clear = document.querySelector(`#clear`);
+    // If array contains 15 inputs, no more inputs allowed
+    // If first character is 0, no zeroes are allowed
+    // If there is already a '.', no other periods allowed
 
-    // Create a click event
-    // Create an array to store clicked inputs
-    // Loop over all the node list
-    // Add the text content of the clicked input to the array
-    // Update the display by append
+    const input = document.querySelectorAll(`.input`);
+
+    const inputArray = [];
+
+    for (let i = 0; i < input.length; i++)
+    {
+        input[i].addEventListener(`click`, function()
+        {
+            if (inputArray.length < 15)
+            {
+                inputArray.push(input[i].textContent);
+            }
+
+            value = inputArray.join(``);
+
+            display.textContent = value;
+        });
+    }
+}
+
+function initialDisplay()
+{
+    const display = document.querySelector(`#display`);
+
+    display.textContent = value;
 }
 
 // Function call
-calcDisplay();
+initialDisplay();
 updateDisplay();
