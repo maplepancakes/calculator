@@ -42,10 +42,13 @@ So how should it work?
 5. If user clicks/keys in on (CLEAR), the display is reset to a value of 0
 */
 
-// Initialize global variable 
-let value = 0;
+// Array for storing input
+const inputArray = [`0`];
 
-function updateDisplay()
+// Variable for storing joined string from variable inputArray
+let value = ``;
+
+function inputCalc()
 {
     /*
     Three conditional statements: -
@@ -54,37 +57,46 @@ function updateDisplay()
     3. For clear, clear entire display
     */
 
-    // If array contains 15 inputs, no more inputs allowed
-    // If first character is 0, no zeroes are allowed
-    // If there is already a '.', no other periods allowed
-
+    // Selects buttons '0-9, .'
     const input = document.querySelectorAll(`.input`);
 
-    const inputArray = [];
-
+    // Loop to update display
     for (let i = 0; i < input.length; i++)
     {
         input[i].addEventListener(`click`, function()
         {
-            if (inputArray.length < 15)
+            // Returns nothing if first display is `0`
+            if (inputArray[0] === `0` && input[i].textContent === `0`)
             {
+                return;
+            }
+
+            // Checks that display does not exceed more than 15 characters
+            else if (inputArray.length < 15)
+            {
+                // Replaces 0 in display with another input
+                if (inputArray[0] === `0`)
+                {
+                    inputArray.pop();
+                }
+
                 inputArray.push(input[i].textContent);
             }
 
-            value = inputArray.join(``);
-
-            display.textContent = value;
+            updateDisplay();
         });
     }
 }
 
-function initialDisplay()
+function updateDisplay()
 {
     const display = document.querySelector(`#display`);
 
+    value = inputArray.join(``);
+    
     display.textContent = value;
 }
 
 // Function call
-initialDisplay();
 updateDisplay();
+inputCalc();
