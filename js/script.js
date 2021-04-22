@@ -43,12 +43,12 @@ So how should it work?
 */
 
 // Array for storing input
-const inputArray = [`0`];
+let inputArray = [`0`];
 
 // Variable for storing joined string from variable inputArray
 let value = ``;
 
-function inputCalc()
+function checkInput()
 {
     /*
     Three conditional statements: -
@@ -117,6 +117,20 @@ function inputCalc()
     }
 }
 
+// Resets display to `0`
+function clearDisplay()
+{
+    const clear = document.querySelector(`#clear`);
+
+    clear.addEventListener(`click`, function()
+    {
+        inputArray = [`0`];
+
+        updateDisplay();
+    });
+}
+
+// Updates display
 function updateDisplay()
 {
     const display = document.querySelector(`#display`);
@@ -128,4 +142,5 @@ function updateDisplay()
 
 // Function call
 updateDisplay();
-inputCalc();
+checkInput();
+clearDisplay();
