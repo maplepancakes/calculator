@@ -48,15 +48,59 @@ let inputArray = [`0`];
 // Variable for storing joined string from variable inputArray
 let value = ``;
 
+function add(num1, num2)
+{
+    value = num1 + num2;
+}
+
+function subtract(num1, num2)
+{
+    value = num1 - num2;
+}
+
+function multiply(num1, num2)
+{
+    value = num1 * num2;
+}
+
+function divide(num1, num2)
+{
+    value = num1/num2;
+}
+
+function operate()
+{
+    let firstNum = 0;
+    let secondNum = 0;
+
+    const add = document.querySelector(`#add`);
+    const subtract = document.querySelector(`#subtract`);
+    const multiply = document.querySelector(`#multiply`);
+    const divide = document.querySelector(`#divide`);
+
+    add.addEventListener(`click`, function()
+    {
+ 
+    });
+
+    subtract.addEventListener(`click`, function()
+    {
+
+    });
+
+    multiply.addEventListener(`click`, function()
+    {
+
+    });
+
+    divide.addEventListener(`click`, function()
+    {
+
+    });
+}
+
 function checkInput()
 {
-    /*
-    Three conditional statements: -
-    1. For '0-9' and '.', update display accordingly
-    2. For backspace, truncate one character from the right
-    3. For clear, clear entire display
-    */
-
     // Selects buttons '0-9, .'
     const input = document.querySelectorAll(`.input`);
 
