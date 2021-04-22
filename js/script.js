@@ -184,6 +184,9 @@ function checkInput()
         updateDisplay(total);
 
         total = parseInt(total);
+
+        resetArray();
+        resetFirstValue();
     });
 }
 
