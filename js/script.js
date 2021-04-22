@@ -42,47 +42,66 @@ So how should it work?
 5. If user clicks/keys in on (CLEAR), the display is reset to a value of 0
 */
 
+// Operands
+let firstValue = ``;
+let secondValue = ``;
+
 // Array for storing input
 let inputArray = [`0`];
 
-// Variable for storing joined string from variable inputArray
-let value = ``;
+// Result
+let total = ``;
 
-function add(num1, num2)
+function addition(num1, num2)
 {
-    value = num1 + num2;
+    total = num1 + num2;
 }
 
-function subtract(num1, num2)
+function subtraction(num1, num2)
 {
     value = num1 - num2;
 }
 
-function multiply(num1, num2)
+function multiplication(num1, num2)
 {
     value = num1 * num2;
 }
 
-function divide(num1, num2)
+function division(num1, num2)
 {
     value = num1/num2;
 }
 
 function operate()
 {
-    let firstNum = 0;
-    let secondNum = 0;
-
     const add = document.querySelector(`#add`);
     const subtract = document.querySelector(`#subtract`);
     const multiply = document.querySelector(`#multiply`);
     const divide = document.querySelector(`#divide`);
+    const equal = document.querySelector(`#equal`);
 
-    add.addEventListener(`click`, function()
+    let operator = ``;
+
+    add.addEventListener(`click`, function(e)
     {
- 
+        if (firstValue === ``)
+        {
+            firstValue = inputArray.join(``);
+            firstValue = parseInt(firstValue);
+            console.log(firstValue);
+            console.log(e);
+            console.log(add.id === `add`);
+
+            operator = add.textContent;
+
+            console.log(operator);
+        }
+
+        resetArray();
+        updateDisplay();
     });
 
+    
     subtract.addEventListener(`click`, function()
     {
 
@@ -96,6 +115,25 @@ function operate()
     divide.addEventListener(`click`, function()
     {
 
+    });
+
+    equal.addEventListener(`click`, function()
+    {
+        if (secondValue === `` && operator === `+`)
+        {
+            secondValue = inputArray.join(``);
+            secondValue = parseInt(secondValue);
+            console.log(secondValue);
+
+            addition(firstValue, secondValue);
+        }
+
+        total = total.toString();
+
+        inputArray = [];
+        inputArray = total.split(``);
+
+        updateDisplay();
     });
 }
 
@@ -156,6 +194,7 @@ function checkInput()
                 }
             }
 
+            operate();
             updateDisplay();
         });
     }
@@ -201,11 +240,12 @@ function backspace()
 // Updates display
 function updateDisplay()
 {
+    let displayValue = ``;
     const display = document.querySelector(`#display`);
 
-    value = inputArray.join(``);
+    displayValue = inputArray.join(``);
     
-    display.textContent = value;
+    display.textContent = displayValue;
 }
 
 // Function call
