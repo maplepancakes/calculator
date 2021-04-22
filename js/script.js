@@ -65,17 +65,17 @@ function addition()
 
 function subtraction()
 {
-    return num1 - num2;
+    total = total - firstValue;
 }
 
 function multiplication()
 {
-    return num1 * num2;
+    total = total * firstValue;
 }
 
 function division()
 {
-    return num1/num2;
+    total = total/firstValue;
 }
 
 function checkInput()
@@ -151,9 +151,7 @@ function checkInput()
 
     add.addEventListener(`click`, function()
     {
-        firstValue = inputArray.join(``);
-        firstValue = parseInt(firstValue);
-
+        assignFirstValue();
         addition();
 
         operator = add.textContent;
@@ -163,8 +161,7 @@ function checkInput()
     });
     equal.addEventListener(`click`, function()
     {
-        firstValue = inputArray.join(``);
-        firstValue = parseInt(firstValue);
+        assignFirstValue();
 
         if (operator === `+`)
         {   
@@ -175,6 +172,12 @@ function checkInput()
 
         updateCalcDisplay();
     });
+}
+
+function assignFirstValue()
+{
+    firstValue = inputArray.join(``);
+    firstValue = parseInt(firstValue);
 }
 
 function updateCalcDisplay()
