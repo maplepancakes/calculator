@@ -52,103 +52,34 @@ let secondValue = ``;
 // Array for storing input
 let inputArray = [`0`];
 
+// Array for storing numbers for calculation
+let calcArray = [];
+
 // Result
 let total = 0;
 
-function addition(num1, num2)
+function addition()
 {
-    total = total + num1 + num2;
+    total = total + firstValue;
 }
 
-function subtraction(num1, num2)
+function subtraction()
 {
-    value = num1 - num2;
+    return num1 - num2;
 }
 
-function multiplication(num1, num2)
+function multiplication()
 {
-    value = num1 * num2;
+    return num1 * num2;
 }
 
-function division(num1, num2)
+function division()
 {
-    value = num1/num2;
-}
-
-function operate()
-{
-
-    /* Things to fix: -
-    1. addition does not result in a decimal
-    2. clicking equals again will result in 0 being added
-    */
-
-    const add = document.querySelector(`#add`);
-    const subtract = document.querySelector(`#subtract`);
-    const multiply = document.querySelector(`#multiply`);
-    const divide = document.querySelector(`#divide`);
-    const equal = document.querySelector(`#equal`);
-
-    add.addEventListener(`click`, function(e)
-    {
-        if (firstValue === ``)
-        {
-            firstValue = inputArray.join(``);
-            firstValue = parseInt(firstValue);
-        }
-
-        operator = add.textContent;
-
-        resetArray();
-        updateDisplay();
-    });
-
-    
-    subtract.addEventListener(`click`, function()
-    {
-
-    });
-
-    multiply.addEventListener(`click`, function()
-    {
-
-    });
-
-    divide.addEventListener(`click`, function()
-    {
-
-    });
-
-    equal.addEventListener(`click`, function()
-    {
-        if (secondValue === `` && operator === `+`)
-        {            
-            secondValue = inputArray.join(``);
-            secondValue = parseInt(secondValue);
-
-            addition(firstValue, secondValue);
-        }
-
-        total = total.toString();
-
-        inputArray = [];
-        inputArray = total.split(``);
-
-        updateDisplay();
-
-        resetArray();
-        reset();
-
-        total = parseInt(total);
-    });
+    return num1/num2;
 }
 
 function checkInput()
 {
-    /* Things to fix: -
-    1. Clicking `.` twice permanently disables the button
-    */
-
     // Selects buttons '0-9, .'
     const input = document.querySelectorAll(`.input`);
 
@@ -204,19 +135,65 @@ function checkInput()
                 }
             }
 
-            operate();
-            updateDisplay();
+            let displayValue = inputArray.join(``);
+
+            // Updates display
+            updateDisplay(displayValue);
         });
     }
+
+    // Initializes variables for operator input
+    const add = document.querySelector(`#add`);
+    const subtract = document.querySelector(`#subtract`);
+    const multiply = document.querySelector(`#multiply`);
+    const divide = document.querySelector(`#divide`);
+    const equal = document.querySelector(`#equal`);
+
+    add.addEventListener(`click`, function()
+    {
+        firstValue = inputArray.join(``);
+        firstValue = parseInt(firstValue);
+
+        addition();
+
+        console.log(`First Value: `, firstValue);
+        console.log(`Total: `, total);
+
+        operator = add.textContent;
+
+        resetArray();
+    });
+    equal.addEventListener(`click`, function()
+    {
+        firstValue = inputArray.join(``);
+        firstValue = parseInt(firstValue);
+
+        console.log(`First Value EQUALS: `, firstValue);
+
+        if (operator === `+`)
+        {   
+            addition();
+
+            console.log(`Total: `, total);
+
+            operator = ``;
+        }
+
+        total = total.toString();
+
+        updateDisplay(total);
+
+        total = parseInt(total);
+    });
 }
 
-function reset()
+// Resets first value to ``
+function resetFirstValue()
 {
     firstValue = ``;
-    secondValue = ``;
-    operator = ``;
 }
 
+// Resets total to 0
 function resetTotal()
 {
     total = 0;
@@ -237,8 +214,9 @@ function clearDisplay()
     {
         resetArray();
         resetTotal();
+        resetFirstValue();
 
-        updateDisplay();
+        updateDisplay(inputArray);
     });
 }
 
@@ -259,23 +237,53 @@ function backspace()
             resetArray();
         }
 
-        updateDisplay();
+        let backspaceOutput = inputArray.join(``);
+
+        updateDisplay(backspaceOutput);
     });
 }
 
 // Updates display
-function updateDisplay()
+function updateDisplay(variable)
 {
-    let displayValue = ``;
     const display = document.querySelector(`#display`);
-
-    displayValue = inputArray.join(``);
     
-    display.textContent = displayValue;
+    display.textContent = variable;
 }
 
+/*const add = document.querySelector(`#add`);
+    const subtract = document.querySelector(`#subtract`);
+    const multiply = document.querySelector(`#multiply`);
+    const divide = document.querySelector(`#divide`);
+    const equal = document.querySelector(`#equal`);
+
+    add.addEventListener(`click`, function()
+    {
+        
+    });
+
+    subtract.addEventListener(`click`, function()
+    {
+
+    });
+
+    multiply.addEventListener(`click`, function()
+    {
+
+    });
+
+    divide.addEventListener(`click`, function()
+    {
+
+    });
+
+    equal.addEventListener(`click`, function()
+    {
+        
+    });
+*/
+
 // Function call
-updateDisplay();
 checkInput();
 clearDisplay();
 backspace();
