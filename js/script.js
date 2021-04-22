@@ -70,7 +70,14 @@ function subtraction()
 
 function multiplication()
 {
-    total = total * firstValue;
+    if (total === 0)
+    {
+        total = 1 * firstValue;
+    }
+    else
+    {
+        total = total * firstValue;
+    }
 }
 
 function division()
@@ -159,6 +166,25 @@ function checkInput()
         updateCalcDisplay();
 
     });
+    subtract.addEventListener(`click`, function()
+    {
+        assignFirstValue();
+        subtraction();
+
+        operator = subtract.textContent;
+
+        updateCalcDisplay();
+    });
+    multiply.addEventListener(`click`, function()
+    {
+        assignFirstValue();
+        multiplication();
+
+        operator = multiply.textContent;
+
+        updateCalcDisplay();
+    });
+
     equal.addEventListener(`click`, function()
     {
         assignFirstValue();
@@ -166,9 +192,19 @@ function checkInput()
         if (operator === `+`)
         {   
             addition();
-
-            operator = ``;
         }
+
+        if (operator === `-`)
+        {
+            subtraction();
+        }
+
+        if (operator === `X`)
+        {
+            multiplication();
+        }
+
+        operator = ``;
 
         updateCalcDisplay();
     });
@@ -253,38 +289,6 @@ function updateDisplay(variable)
     
     display.textContent = variable;
 }
-
-/*const add = document.querySelector(`#add`);
-    const subtract = document.querySelector(`#subtract`);
-    const multiply = document.querySelector(`#multiply`);
-    const divide = document.querySelector(`#divide`);
-    const equal = document.querySelector(`#equal`);
-
-    add.addEventListener(`click`, function()
-    {
-        
-    });
-
-    subtract.addEventListener(`click`, function()
-    {
-
-    });
-
-    multiply.addEventListener(`click`, function()
-    {
-
-    });
-
-    divide.addEventListener(`click`, function()
-    {
-
-    });
-
-    equal.addEventListener(`click`, function()
-    {
-        
-    });
-*/
 
 // Function call
 checkInput();
