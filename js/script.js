@@ -42,6 +42,9 @@ So how should it work?
 5. If user clicks/keys in on (CLEAR), the display is reset to a value of 0
 */
 
+// Variable to store operator
+let operator = ``;
+
 // Operands
 let firstValue = ``;
 let secondValue = ``;
@@ -50,11 +53,11 @@ let secondValue = ``;
 let inputArray = [`0`];
 
 // Result
-let total = ``;
+let total = 0;
 
 function addition(num1, num2)
 {
-    total = num1 + num2;
+    total = total + num1 + num2;
 }
 
 function subtraction(num1, num2)
@@ -74,13 +77,17 @@ function division(num1, num2)
 
 function operate()
 {
+
+    /* Things to fix: -
+    1. addition does not result in a decimal
+    2. clicking equals again will result in 0 being added
+    */
+
     const add = document.querySelector(`#add`);
     const subtract = document.querySelector(`#subtract`);
     const multiply = document.querySelector(`#multiply`);
     const divide = document.querySelector(`#divide`);
     const equal = document.querySelector(`#equal`);
-
-    let operator = ``;
 
     add.addEventListener(`click`, function(e)
     {
@@ -88,14 +95,9 @@ function operate()
         {
             firstValue = inputArray.join(``);
             firstValue = parseInt(firstValue);
-            console.log(firstValue);
-            console.log(e);
-            console.log(add.id === `add`);
-
-            operator = add.textContent;
-
-            console.log(operator);
         }
+
+        operator = add.textContent;
 
         resetArray();
         updateDisplay();
@@ -120,10 +122,9 @@ function operate()
     equal.addEventListener(`click`, function()
     {
         if (secondValue === `` && operator === `+`)
-        {
+        {            
             secondValue = inputArray.join(``);
             secondValue = parseInt(secondValue);
-            console.log(secondValue);
 
             addition(firstValue, secondValue);
         }
@@ -134,11 +135,20 @@ function operate()
         inputArray = total.split(``);
 
         updateDisplay();
+
+        resetArray();
+        reset();
+
+        total = parseInt(total);
     });
 }
 
 function checkInput()
 {
+    /* Things to fix: -
+    1. Clicking `.` twice permanently disables the button
+    */
+
     // Selects buttons '0-9, .'
     const input = document.querySelectorAll(`.input`);
 
@@ -200,6 +210,18 @@ function checkInput()
     }
 }
 
+function reset()
+{
+    firstValue = ``;
+    secondValue = ``;
+    operator = ``;
+}
+
+function resetTotal()
+{
+    total = 0;
+}
+
 // Resets inputArray to [`0`]
 function resetArray()
 {
@@ -214,6 +236,7 @@ function clearDisplay()
     clear.addEventListener(`click`, function()
     {
         resetArray();
+        resetTotal();
 
         updateDisplay();
     });
@@ -222,6 +245,9 @@ function clearDisplay()
 // Removes one digit from the display
 function backspace()
 {
+    /* Things to fix: -
+    1. Backspace must be able to truncate total
+    */
     const backspace = document.querySelector(`#backspace`);
 
     backspace.addEventListener(`click`, function()
