@@ -117,6 +117,12 @@ function checkInput()
     }
 }
 
+// Resets inputArray to [`0`]
+function resetArray()
+{
+    inputArray = [`0`];
+}
+
 // Resets display to `0`
 function clearDisplay()
 {
@@ -124,7 +130,25 @@ function clearDisplay()
 
     clear.addEventListener(`click`, function()
     {
-        inputArray = [`0`];
+        resetArray();
+
+        updateDisplay();
+    });
+}
+
+// Removes one digit from the display
+function backspace()
+{
+    const backspace = document.querySelector(`#backspace`);
+
+    backspace.addEventListener(`click`, function()
+    {
+        inputArray.pop();
+
+        if (typeof inputArray[0] === `undefined`)
+        {
+            resetArray();
+        }
 
         updateDisplay();
     });
@@ -144,3 +168,4 @@ function updateDisplay()
 updateDisplay();
 checkInput();
 clearDisplay();
+backspace();
