@@ -156,38 +156,35 @@ function checkInput()
 
         addition();
 
-        console.log(`First Value: `, firstValue);
-        console.log(`Total: `, total);
-
         operator = add.textContent;
 
-        resetArray();
+        updateCalcDisplay();
+
     });
     equal.addEventListener(`click`, function()
     {
         firstValue = inputArray.join(``);
         firstValue = parseInt(firstValue);
 
-        console.log(`First Value EQUALS: `, firstValue);
-
         if (operator === `+`)
         {   
             addition();
 
-            console.log(`Total: `, total);
-
             operator = ``;
         }
 
-        total = total.toString();
-
-        updateDisplay(total);
-
-        total = parseInt(total);
-
-        resetArray();
-        resetFirstValue();
+        updateCalcDisplay();
     });
+}
+
+function updateCalcDisplay()
+{
+    total = total.toString();
+    updateDisplay(total);
+    total = parseInt(total);
+
+    resetArray();
+    resetFirstValue();
 }
 
 // Resets first value to ``
