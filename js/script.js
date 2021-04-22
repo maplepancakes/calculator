@@ -54,6 +54,7 @@ function add(num1, num2)
 }
 
 function subtract(num1, num2)
+<<<<<<< HEAD
 {
     value = num1 - num2;
 }
@@ -70,6 +71,24 @@ function divide(num1, num2)
 
 function operate()
 {
+=======
+{
+    value = num1 - num2;
+}
+
+function multiply(num1, num2)
+{
+    value = num1 * num2;
+}
+
+function divide(num1, num2)
+{
+    value = num1/num2;
+}
+
+function operate()
+{
+>>>>>>> revertedVersion
     let firstNum = 0;
     let secondNum = 0;
 
@@ -87,6 +106,7 @@ function operate()
     {
 
     });
+<<<<<<< HEAD
 
     multiply.addEventListener(`click`, function()
     {
@@ -114,6 +134,20 @@ function toggleButton(input, selectElement)
     }
 }
 
+=======
+
+    multiply.addEventListener(`click`, function()
+    {
+
+    });
+
+    divide.addEventListener(`click`, function()
+    {
+
+    });
+}
+
+>>>>>>> revertedVersion
 function checkInput()
 {
     // Selects buttons '0-9, .'
