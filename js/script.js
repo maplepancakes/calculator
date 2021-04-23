@@ -33,6 +33,12 @@ function resetArray()
     inputArray = [`0`];
 }
 
+// Resets operator variable to empty string
+function resetOperator()
+{
+    operator = ``;
+}
+
 // Resets display to `0`
 function clearDisplay()
 {
@@ -42,7 +48,7 @@ function clearDisplay()
     {
         resetArray();
         resetTotal();
-        resetFirstValue();
+        resetOperator();
 
         updateDisplay(inputArray);
     });
@@ -96,12 +102,6 @@ function checkInput()
     {
         input[i].addEventListener(`click`, function()
         {
-            // Returns nothing if first display is `0`
-            if (inputArray[0] === `0` && input[i].textContent === `0`)
-            {
-                return;
-            }
-
             // Checks if there are more than one `.` input in the display
             let dupArray = [];
             for (let k = 0; k < inputArray.length; k++)
@@ -144,13 +144,13 @@ function checkInput()
             // Checks if any operator is clicked on after the `=` button, if not, reset total to 0
             if (operator === ``)
             {
-                total = 0;
+                resetTotal();
             }
 
             let displayValue = inputArray.join(``);
 
-            // Updates display
             updateDisplay(displayValue);
+            console.log(`no...`)
         });
     }
 }
@@ -346,9 +346,7 @@ function operate()
     equal.addEventListener(`click`, function()
     {
         checkOperator();
-
-        // Set operator variable to empty string
-        operator = ``;
+        resetOperator();
     });
 }
 
