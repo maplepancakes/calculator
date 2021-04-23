@@ -182,6 +182,12 @@ function checkInput()
                 }
             }
 
+            // Checks if any operator is clicked on after the `=` button, if not, reset total to 0
+            if (operator === ``)
+            {
+                total = 0;
+            }
+
             let displayValue = inputArray.join(``);
 
             // Updates display
@@ -190,24 +196,86 @@ function checkInput()
     }
 }
 
-function addition()
+function parseArray(variable, array)
+{
+    variable = array.join(``)
+    variable = parseInt(variable);
+
+    return variable;
+}
+
+function checkArray()
+{
+
+}
+
+function addition(value)
+{
+    total = total + value;
+}
+
+function subtraction(value)
+{
+    if (total === 0)
+    {
+        total = total + value;
+    }
+    else if (total !== 0)
+    {   
+        total = total - value;
+    }
+}
+
+function multiplication(value)
+{
+    if (value === 0)
+    {
+        value = 1;
+    }
+    else if (total === 0)
+    {
+        total = 1 * value;
+    }
+    else if (total !== 0)
+    {
+        total = total * value;
+    }
+}
+
+function division(value)
+{
+    if (value === 0)
+    {
+        value = 1;
+    }
+    else if (total === 0)
+    {
+        total = value;
+    }
+    else if (total !== 0)
+    {
+        total = Math.round(total/value * 100)/100;
+    }
+}
+
+function addOperation()
 {
     
 }
 
-function subtraction()
+function subtractOperation()
 {
-    
+
 }
 
-function multiplication()
+function multiplyOperation()
 {
-    
+
 }
 
-function division()
+function divideOperation()
 {
-    
+
 }
 
 function checkOperator()
@@ -217,7 +285,7 @@ function checkOperator()
         additionValue = inputArray.join(``);
         additionValue = parseInt(additionValue);
 
-        total = total + additionValue;
+        addition(additionValue);
 
         updateDisplay(total);
         resetArray();
@@ -227,14 +295,7 @@ function checkOperator()
         subtractionValue = inputArray.join(``);
         subtractionValue = parseInt(subtractionValue);
 
-        if (total === 0)
-        {
-            total = total + subtractionValue;
-        }
-        else if (total !== 0)
-        {   
-            total = total - subtractionValue;
-        }
+        subtraction(subtractionValue);
 
         updateDisplay(total);
         resetArray();
@@ -244,7 +305,7 @@ function checkOperator()
         multiplicationValue = inputArray.join(``);
         multiplicationValue = parseInt(multiplicationValue);
 
-        total = total * multiplicationValue;
+        multiplication(multiplicationValue);
 
         updateDisplay(total);
         resetArray();
@@ -254,14 +315,7 @@ function checkOperator()
         divisionValue = inputArray.join(``);
         divisionValue = parseInt(divisionValue);
 
-        if (divisionValue === 0)
-        {
-            divisionValue = 1;
-        }
-        else
-        {
-            total = Math.round(total/divisionValue * 100)/100;
-        }
+        division(divisionValue);
 
         updateDisplay(total);
         resetArray();
@@ -288,12 +342,12 @@ function operate()
     {
         checkOperator();
 
-        additionValue = inputArray.join(``);
-        additionValue = parseInt(additionValue);
+        additionValue = parseArray(additionValue, inputArray);
 
-        total = total + additionValue;
+        addition(additionValue);
 
         updateDisplay(total);
+
         resetArray();
 
         operator = add.textContent;
@@ -303,19 +357,12 @@ function operate()
     {
         checkOperator();
 
-        subtractionValue = inputArray.join(``);
-        subtractionValue = parseInt(subtractionValue);
+        subtractionValue = parseArray(subtractionValue, inputArray);
 
-        if (total === 0)
-        {
-            total = total + subtractionValue;
-        }
-        else if (total !== 0)
-        {   
-            total = total - subtractionValue;
-        }
+        subtraction(subtractionValue);
 
         updateDisplay(total);
+
         resetArray();
 
         operator = subtract.textContent;
@@ -325,23 +372,12 @@ function operate()
     {
         checkOperator();
 
-        multiplicationValue = inputArray.join(``);
-        multiplicationValue = parseInt(multiplicationValue);
+        multiplicationValue = parseArray(multiplicationValue, inputArray);
 
-        if (multiplicationValue === 0)
-        {
-            multiplicationValue = 1;
-        }
-        else if (total === 0)
-        {
-            total = 1 * multiplicationValue;
-        }
-        else if (total !== 0)
-        {
-            total = total * multiplicationValue;
-        }
+        multiplication(multiplicationValue);
 
         updateDisplay(total);
+
         resetArray();
 
         if (inputArray[0] === `0` && typeof inputArray[1] === `undefined`)
@@ -354,29 +390,13 @@ function operate()
     divide.addEventListener(`click`, function()
     {
         checkOperator();
-        
-        divisionValue = inputArray.join(``);
-        divisionValue = parseInt(divisionValue);
-        console.log(`Initial value: ${divisionValue}`)
 
-        if (divisionValue === 0)
-        {
-            divisionValue = 1;
-        }
-        else if (total === 0)
-        {
-            total = divisionValue;
-            console.log(`Total IF: ${total}`)
-            console.log(`Division value IF: ${total}`)
-        }
-        else if (total !== 0)
-        {
-            total = Math.round(total/divisionValue * 100)/100;
-            console.log(`Total ELSE: ${total}`)
-            console.log(`Division value ELSE: ${total}`)
-        }
+        divisionValue = parseArray(divisionValue, inputArray);
+
+        division(divisionValue);
 
         updateDisplay(total);
+
         resetArray();
 
         if (inputArray[0] === `0` && typeof inputArray[1] === `undefined`)
