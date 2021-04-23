@@ -192,65 +192,22 @@ function checkInput()
 
 function addition()
 {
-    total = total + firstValue;
+    
 }
 
 function subtraction()
 {
-    if (total === 0)
-    {
-        total = total + firstValue;
-    }
-    else if (total !== 0)
-    {   
-        total = total - firstValue;
-    }
+    
 }
 
 function multiplication()
 {
-    if (total == 0)
-    {
-        total = 1 * firstValue;
-        console.log(`Total IF: `, firstValue)
-        console.log(`First Value IF: `, firstValue)
-    }
-    else if (total != 0)
-    {
-        total = total * firstValue;
-        console.log(`Total ELSE: `, firstValue)
-        console.log(`First Value ELSE: `, firstValue)
-    }
+    
 }
 
 function division()
 {
-    total = total/firstValue;
-}
-
-function assignFirstValue()
-{
-    firstValue = inputArray.join(``);
-    firstValue = parseInt(firstValue);
-    console.log(`Assigned First Value: ${firstValue}`);
-}
-
-function assignSecondValue()
-{
-    secondValue = inputArray.join(``);
-    secondValue = parseInt(secondValue);
-    console.log(`Assigned Second Value: ${secondValue}`);
-}
-
-function updateCalcDisplay()
-{
-    total = total.toString();
-    updateDisplay(total);
-    total = parseInt(total);
-    console.log(`Total ${total}`)
-
-    resetArray();
-    resetFirstValue();
+    
 }
 
 // For operating on calculator inputs
@@ -314,14 +271,10 @@ function operate()
         else if (total === 0)
         {
             total = 1 * multiplicationValue;
-            console.log(`Total IF: `, multiplicationValue)
-            console.log(`First Value IF: `, multiplicationValue)
         }
         else if (total !== 0)
         {
             total = total * multiplicationValue;
-            console.log(`Total ELSE: `, multiplicationValue)
-            console.log(`First Value ELSE: `, multiplicationValue)
         }
 
         updateDisplay(total);
@@ -333,6 +286,39 @@ function operate()
         }
 
         operator = multiply.textContent;
+    });
+    divide.addEventListener(`click`, function()
+    {
+        divisionValue = inputArray.join(``);
+        divisionValue = parseInt(divisionValue);
+        console.log(`Initial value: ${divisionValue}`)
+
+        if (divisionValue === 0)
+        {
+            divisionValue = 1;
+        }
+        else if (total === 0)
+        {
+            total = divisionValue;
+            console.log(`Total IF: ${total}`)
+            console.log(`Division value IF: ${total}`)
+        }
+        else if (total !== 0)
+        {
+            total = Math.round(total/divisionValue * 100)/100;
+            console.log(`Total ELSE: ${total}`)
+            console.log(`Division value ELSE: ${total}`)
+        }
+
+        updateDisplay(total);
+        resetArray();
+
+        if (inputArray[0] === `0` && typeof inputArray[1] === `undefined`)
+        {
+            divisionValue = 1;
+        }
+
+        operator = divide.textContent;
     });
 
     // `=` button
@@ -348,8 +334,7 @@ function operate()
             updateDisplay(total);
             resetArray();
         }
-
-        if (operator === `-`)
+        else if (operator === `-`)
         {
             subtractionValue = inputArray.join(``);
             subtractionValue = parseInt(subtractionValue);
@@ -366,16 +351,29 @@ function operate()
             updateDisplay(total);
             resetArray();
         }
-
-        if (operator === `X`)
+        else if (operator === `X`)
         {
             multiplicationValue = inputArray.join(``);
             multiplicationValue = parseInt(multiplicationValue);
 
             total = total * multiplicationValue;
-            console.log(`Total ELSE: `, multiplicationValue)
-            console.log(`First Value ELSE: `, multiplicationValue)
 
+            updateDisplay(total);
+            resetArray();
+        }
+        else if (operator === `/`)
+        {
+            divisionValue = inputArray.join(``);
+            divisionValue = parseInt(divisionValue);
+
+            if (divisionValue === 0)
+            {
+                divisionValue = 1;
+            }
+            else
+            {
+                total = Math.round(total/divisionValue * 100)/100;
+            }
 
             updateDisplay(total);
             resetArray();
