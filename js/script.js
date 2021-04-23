@@ -1,47 +1,6 @@
-/*
-1. Create the following four functions: -
-    - add(num1, num2)
-    - subtract(num1, num2)
-    - multiply(num1, num2)
-    - divide(num1, num2)
-
-2. Create operate() function does the following: -
-    - takes an operator and 2 numbers, and call one of the 
-        aforementioned 4 functions
-
-3. Create functions that populate display when you click on 
-    the numbers
-
-So how should it work?
-1. If user clicks/keys in the following inputs 
-    (1, 2, 3, 4, 5, 6, 7, 8, 9, 0, .)
-    - The input should be on display
-    - If the first character is '0', then no other zeroes can
-        can be inputted
-    - If there is already a '.', then no other periods can be
-        inputted
-
-2. When user clicks/keys in one of the following inputs
-    (/, *, +, -)
-    - The input from Step 1 should still be on display
-    - Upon keying in the first input from Step 1, the old display
-        will be replaced by the new input
-
-3. Once user has clicked/keyed in two numbers and an operator from 
-    Step 1 and Step 2: -
-    - If user clicks/keys in on (=), the display should show the result
-        of the two numbers manipulated by the 
-        chosen operator from Step 2
-    - If user clicks/keys in on another operator, the display should
-        show the result of the two numbers manipulated by the 
-        chosen operator from Step 2
-
-4. If user click/keys in on (BACKSPACE), the input display will be
-    truncated by one character from the right
-
-5. If user clicks/keys in on (CLEAR), the display is reset to a value of 0
-*/
-
+/*=============================================================*/
+/* GLOBAL VARIABLES                                            */
+/*=============================================================*/
 // Variable to store operator
 let operator = ``;
 
@@ -59,7 +18,9 @@ let calcArray = [];
 let total = 0;
 
 let counter = 0;
-
+/*=============================================================*/
+/* FUNCTIONS                                                   */
+/*=============================================================*/
 // Resets first value to ``
 function resetFirstValue()
 {
@@ -196,6 +157,7 @@ function checkInput()
     }
 }
 
+// Joins array elements to variable and parses the value to an integer
 function parseArray(variable, array)
 {
     variable = array.join(``)
@@ -204,16 +166,24 @@ function parseArray(variable, array)
     return variable;
 }
 
-function checkArray()
+// Assigns 1 to variable if first element of inputArray is `0` and second element of inputArray is undefined
+function checkArray(variable)
 {
+    if (inputArray[0] === `0` && typeof inputArray[1] === `undefined`)
+    {
+        variable = 1;
+    }
 
+    return variable;
 }
 
+// Add
 function addition(value)
 {
     total = total + value;
 }
 
+// Subtract
 function subtraction(value)
 {
     if (total === 0)
@@ -226,6 +196,7 @@ function subtraction(value)
     }
 }
 
+// Multiply
 function multiplication(value)
 {
     if (value === 0)
@@ -242,6 +213,7 @@ function multiplication(value)
     }
 }
 
+// Divide
 function division(value)
 {
     if (value === 0)
@@ -258,26 +230,7 @@ function division(value)
     }
 }
 
-function addOperation()
-{
-    
-}
-
-function subtractOperation()
-{
-
-}
-
-function multiplyOperation()
-{
-
-}
-
-function divideOperation()
-{
-
-}
-
+// Checks value in operator variable
 function checkOperator()
 {
     if (operator === `+`)
@@ -340,70 +293,54 @@ function operate()
     // `+` button
     add.addEventListener(`click`, function()
     {
+        // Operations for addition
         checkOperator();
-
         additionValue = parseArray(additionValue, inputArray);
-
         addition(additionValue);
-
         updateDisplay(total);
-
         resetArray();
 
+        // Adds `+` to operator variable
         operator = add.textContent;
     });
     // `-` button
     subtract.addEventListener(`click`, function()
     {
+        // Operations for subtraction
         checkOperator();
-
         subtractionValue = parseArray(subtractionValue, inputArray);
-
         subtraction(subtractionValue);
-
         updateDisplay(total);
-
         resetArray();
 
+        // Adds `-` to operator variable
         operator = subtract.textContent;
     });
     // `X` button
     multiply.addEventListener(`click`, function()
     {
+        // Operations for multiplication
         checkOperator();
-
         multiplicationValue = parseArray(multiplicationValue, inputArray);
-
         multiplication(multiplicationValue);
-
         updateDisplay(total);
-
         resetArray();
+        checkArray(multiplicationValue);
 
-        if (inputArray[0] === `0` && typeof inputArray[1] === `undefined`)
-        {
-            multiplicationValue = 1;
-        }
-
+        // Adds `X` to operator variable
         operator = multiply.textContent;
     });
     divide.addEventListener(`click`, function()
     {
+        // Operations for division
         checkOperator();
-
         divisionValue = parseArray(divisionValue, inputArray);
-
         division(divisionValue);
-
         updateDisplay(total);
-
         resetArray();
+        checkArray(divisionValue);
 
-        if (inputArray[0] === `0` && typeof inputArray[1] === `undefined`)
-        {
-            divisionValue = 1;
-        }
-
+        // Adds `/` to operator variable
         operator = divide.textContent;
     });
 
@@ -412,6 +349,7 @@ function operate()
     {
         checkOperator();
 
+        // Set operator variable to empty string
         operator = ``;
     });
 }
@@ -424,6 +362,7 @@ function mainProgram()
     clearDisplay();
     backspace();
 }
-
-// Function call
+/*=============================================================*/
+/* FUNCTION CALL                                               */
+/*=============================================================*/
 mainProgram();
