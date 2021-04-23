@@ -1,6 +1,6 @@
 body
 {
-    background-color: #FFA000;
+    background-color: #616161;
     display: flex;
     justify-content: center;
     margin-top: 10vh;
@@ -77,19 +77,34 @@ body
 
 #secondary-display
 {
-    animation-name: swishing-gradient;
-    animation-duration: 3s;
-    animation-iteration-count: infinite;
+    border:1px solid #FF6F00;
+    font-size:30px;
+    background: linear-gradient(130deg, #ff7e00, #ffffff);
+    background-size: 200% 200%;
+
+    -webkit-animation: Animation 5s ease infinite;
+    -moz-animation: Animation 5s ease infinite;
+    animation: Animation 5s ease infinite;
 }
 
-@keyframes swishing-gradient
-{
-    0% {background: linear-gradient(45deg, #FFF9C4, #F9A825);}
-    100% {background-color: linear-gradient(90deg, #F9A825, #FFF9C4);}
+@-webkit-keyframes Animation {
+    0%{background-position:10% 0%}
+    50%{background-position:91% 100%}
+    100%{background-position:10% 0%}
+}
+@-moz-keyframes Animation {
+    0%{background-position:10% 0%}
+    50%{background-position:91% 100%}
+    100%{background-position:10% 0%}
+}
+@keyframes Animation { 
+    0%{background-position:10% 0%}
+    50%{background-position:91% 100%}
+    100%{background-position:10% 0%}
 }
 
 #clear {grid-area: clear; background-color: #616161;}
-#secondary-display {grid-area: secondary-display;}
+#secondary-display {grid-area: secondary-display; background-color: #616161;}
 #divide {grid-area: divide; background-color: #0277BD;}
 #seven {grid-area: seven; background-color: #616161;}
 #eight {grid-area: eight; background-color: #616161;}
