@@ -54,12 +54,10 @@ function clearDisplay()
     });
 }
 
+/*
 // Removes one digit from the display
 function backspace()
 {
-    /* Things to fix: -
-    1. Backspace must be able to truncate total
-    */
     const backspace = document.querySelector(`#backspace`);
 
     backspace.addEventListener(`click`, function()
@@ -76,6 +74,7 @@ function backspace()
         updateDisplay(backspaceOutput);
     });
 }
+*/
 
 // Updates display
 function updateDisplay(variable)
@@ -356,7 +355,6 @@ function mainProgram()
     checkInput();
     operate();
     clearDisplay();
-    backspace();
 }
 /*=============================================================*/
 /* FUNCTION CALL                                               */
