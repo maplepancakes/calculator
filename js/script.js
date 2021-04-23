@@ -124,9 +124,7 @@ function checkInput()
                 // If there is more than one `.` input, disable the `.` button
                 if (dupArray.length > 0 && input[i].textContent === `.`)
                 {
-                    const decimalInput = document.querySelector(`#point`);
-
-                    decimalInput.setAttribute(`disabled`, `true`);
+                    return;
                 }
                 // If first input is a `.`: -
                 // 1. Add a `.` to the array
