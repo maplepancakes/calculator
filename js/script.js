@@ -304,32 +304,35 @@ function operate()
     // `X` button
     multiply.addEventListener(`click`, function()
     {
-        firstValue = inputArray.join(``);
-        firstValue = parseInt(firstValue);
-        console.log(`Assigned First Value: ${firstValue}`);
+        multiplicationValue = inputArray.join(``);
+        multiplicationValue = parseInt(multiplicationValue);
 
-        if (total == 0)
+        if (multiplicationValue === 0)
         {
-            total = 1 * firstValue;
-            console.log(`Total IF: `, firstValue)
-            console.log(`First Value IF: `, firstValue)
+            multiplicationValue = 1;
         }
-        else if (total != 0)
+        else if (total === 0)
         {
-            total = total * firstValue;
-            console.log(`Total ELSE: `, firstValue)
-            console.log(`First Value ELSE: `, firstValue)
+            total = 1 * multiplicationValue;
+            console.log(`Total IF: `, multiplicationValue)
+            console.log(`First Value IF: `, multiplicationValue)
+        }
+        else if (total !== 0)
+        {
+            total = total * multiplicationValue;
+            console.log(`Total ELSE: `, multiplicationValue)
+            console.log(`First Value ELSE: `, multiplicationValue)
+        }
+
+        updateDisplay(total);
+        resetArray();
+
+        if (inputArray[0] === `0` && typeof inputArray[1] === `undefined`)
+        {
+            multiplicationValue = 1;
         }
 
         operator = multiply.textContent;
-
-        total = total.toString();
-        updateDisplay(total);
-        total = parseInt(total);
-        console.log(`Total UPDATED: ${total}`)
-
-        inputArray = [`0`];
-        firstValue = ``;
     });
 
     // `=` button
@@ -366,32 +369,16 @@ function operate()
 
         if (operator === `X`)
         {
-            firstValue = inputArray.join(``);
-            firstValue = parseInt(firstValue);
-            console.log(`Assigned First Value: ${firstValue}`);
+            multiplicationValue = inputArray.join(``);
+            multiplicationValue = parseInt(multiplicationValue);
 
-            if (total == 0)
-            {
-                total = 1 * firstValue;
-                console.log(`Total IF EQUAL: `, firstValue)
-                console.log(`First Value IF EQUAL: `, firstValue)
-            }
-            else
-            {
-                total = total * firstValue;
-                console.log(`Total ELSE EQUAL: `, firstValue)
-                console.log(`First Value ELSE EQUAL: `, firstValue)
-            }
+            total = total * multiplicationValue;
+            console.log(`Total ELSE: `, multiplicationValue)
+            console.log(`First Value ELSE: `, multiplicationValue)
 
-            total = total.toString();
+
             updateDisplay(total);
-            total = parseInt(total);
-            console.log(`Total EQUAL: ${total}`)
-
-            inputArray = [`1`];
-            console.log(`Array EQUAL: ${inputArray}`)
-            firstValue = ``;
-            console.log(`First Value EQUAL: ${firstValue}`)
+            resetArray();
         }
 
         operator = ``;
