@@ -58,174 +58,6 @@ let calcArray = [];
 // Result
 let total = 0;
 
-function addition()
-{
-    total = total + firstValue;
-}
-
-function subtraction()
-{
-    total = total - firstValue;
-}
-
-function multiplication()
-{
-    if (total === 0)
-    {
-        total = 1 * firstValue;
-    }
-    else
-    {
-        total = total * firstValue;
-    }
-}
-
-function division()
-{
-    total = total/firstValue;
-}
-
-function checkInput()
-{
-    // Selects buttons '0-9, .'
-    const input = document.querySelectorAll(`.input`);
-
-    // Loop to update display
-    for (let i = 0; i < input.length; i++)
-    {
-        input[i].addEventListener(`click`, function()
-        {
-            // Returns nothing if first display is `0`
-            if (inputArray[0] === `0` && input[i].textContent === `0`)
-            {
-                return;
-            }
-
-            // Checks if there are more than one `.` input in the display
-            let dupArray = [];
-            for (let k = 0; k < inputArray.length; k++)
-            {
-                if (inputArray[k] === `.`)
-                {
-                    dupArray.push(inputArray[k]);
-                }
-            }
-
-            // Checks that display does not exceed more than 15 characters
-            if (inputArray.length < 15)
-            {
-                // If there is more than one `.` input, disable the `.` button
-                if (dupArray.length > 0 && input[i].textContent === `.`)
-                {
-                    const decimalInput = document.querySelector(`#point`);
-
-                    decimalInput.setAttribute(`disabled`, `true`);
-                }
-                // If first input is a `.`: -
-                // 1. Add a `.` to the array
-                // 2. Do not remove `0` from the array
-                else if (inputArray[0] === `0` && inputArray.length === 1 && input[i].textContent === `.`)
-                {
-                    inputArray.push(input[i].textContent);
-                }
-                // If first input is not a `.`, replace `0` with the content of the first input
-                else if (inputArray[0] === `0` && inputArray[1] !== `.`)
-                {
-                    inputArray.shift();
-
-                    inputArray.push(input[i].textContent);
-                }
-                // Adds input content into array
-                else
-                {
-                    inputArray.push(input[i].textContent);
-                }
-            }
-
-            let displayValue = inputArray.join(``);
-
-            // Updates display
-            updateDisplay(displayValue);
-        });
-    }
-
-    // Initializes variables for operator input
-    const add = document.querySelector(`#add`);
-    const subtract = document.querySelector(`#subtract`);
-    const multiply = document.querySelector(`#multiply`);
-    const divide = document.querySelector(`#divide`);
-    const equal = document.querySelector(`#equal`);
-
-    add.addEventListener(`click`, function()
-    {
-        assignFirstValue();
-        addition();
-
-        operator = add.textContent;
-
-        updateCalcDisplay();
-
-    });
-    subtract.addEventListener(`click`, function()
-    {
-        assignFirstValue();
-        subtraction();
-
-        operator = subtract.textContent;
-
-        updateCalcDisplay();
-    });
-    multiply.addEventListener(`click`, function()
-    {
-        assignFirstValue();
-        multiplication();
-
-        operator = multiply.textContent;
-
-        updateCalcDisplay();
-    });
-
-    equal.addEventListener(`click`, function()
-    {
-        assignFirstValue();
-
-        if (operator === `+`)
-        {   
-            addition();
-        }
-
-        if (operator === `-`)
-        {
-            subtraction();
-        }
-
-        if (operator === `X`)
-        {
-            multiplication();
-        }
-
-        operator = ``;
-
-        updateCalcDisplay();
-    });
-}
-
-function assignFirstValue()
-{
-    firstValue = inputArray.join(``);
-    firstValue = parseInt(firstValue);
-}
-
-function updateCalcDisplay()
-{
-    total = total.toString();
-    updateDisplay(total);
-    total = parseInt(total);
-
-    resetArray();
-    resetFirstValue();
-}
-
 // Resets first value to ``
 function resetFirstValue()
 {
@@ -290,7 +122,249 @@ function updateDisplay(variable)
     display.textContent = variable;
 }
 
+// Checks input and updates display
+function checkInput()
+{
+    // Selects buttons '0-9, .'
+    const input = document.querySelectorAll(`.input`);
+
+    // Loop to update display
+    for (let i = 0; i < input.length; i++)
+    {
+        input[i].addEventListener(`click`, function()
+        {
+            // Returns nothing if first display is `0`
+            if (inputArray[0] === `0` && input[i].textContent === `0`)
+            {
+                return;
+            }
+
+            // Checks if there are more than one `.` input in the display
+            let dupArray = [];
+            for (let k = 0; k < inputArray.length; k++)
+            {
+                if (inputArray[k] === `.`)
+                {
+                    dupArray.push(inputArray[k]);
+                }
+            }
+
+            // Checks that display does not exceed more than 15 characters
+            if (inputArray.length < 15)
+            {
+                // If there is more than one `.` input, disable the `.` button
+                if (dupArray.length > 0 && input[i].textContent === `.`)
+                {
+                    const decimalInput = document.querySelector(`#point`);
+
+                    decimalInput.setAttribute(`disabled`, `true`);
+                }
+                // If first input is a `.`: -
+                // 1. Add a `.` to the array
+                // 2. Do not remove `0` from the array
+                else if (inputArray[0] === `0` && inputArray.length === 1 && input[i].textContent === `.`)
+                {
+                    inputArray.push(input[i].textContent);
+                }
+                // If first input is not a `.`, replace `0` with the content of the first input
+                else if (inputArray[0] === `0` && inputArray[1] !== `.`)
+                {
+                    inputArray.shift();
+
+                    inputArray.push(input[i].textContent);
+                }
+                // Adds input content into array
+                else
+                {
+                    inputArray.push(input[i].textContent);
+                }
+            }
+
+            let displayValue = inputArray.join(``);
+
+            // Updates display
+            updateDisplay(displayValue);
+        });
+    }
+}
+
+function addition()
+{
+    total = total + firstValue;
+}
+
+function subtraction()
+{
+    if (total === 0)
+    {
+        total = total + firstValue;
+    }
+    else if (total !== 0)
+    {   
+        total = total - firstValue;
+    }
+}
+
+function multiplication()
+{
+    if (total == 0)
+    {
+        total = 1 * firstValue;
+        console.log(`Total IF: `, firstValue)
+        console.log(`First Value IF: `, firstValue)
+    }
+    else
+    {
+        total = total * firstValue;
+        console.log(`Total ELSE: `, firstValue)
+        console.log(`First Value ELSE: `, firstValue)
+    }
+}
+
+function division()
+{
+    total = total/firstValue;
+}
+
+function assignFirstValue()
+{
+    firstValue = inputArray.join(``);
+    firstValue = parseInt(firstValue);
+    console.log(`Assigned First Value: ${firstValue}`);
+}
+
+function updateCalcDisplay()
+{
+    total = total.toString();
+    updateDisplay(total);
+    total = parseInt(total);
+    console.log(`Total ${total}`)
+
+    resetArray();
+    resetFirstValue();
+}
+
+// For operating on calculator inputs
+function operate()
+{
+    // Initializes variables for operator input
+    const add = document.querySelector(`#add`);
+    const subtract = document.querySelector(`#subtract`);
+    const multiply = document.querySelector(`#multiply`);
+    const divide = document.querySelector(`#divide`);
+    const equal = document.querySelector(`#equal`);
+
+    // `+` button
+    add.addEventListener(`click`, function()
+    {
+        assignFirstValue();
+        addition();
+
+        operator = add.textContent;
+
+        updateCalcDisplay();
+
+    });
+    // `-` button
+    subtract.addEventListener(`click`, function()
+    {
+        assignFirstValue();
+        subtraction();
+
+        operator = subtract.textContent;
+
+        updateCalcDisplay();
+    });
+    // `X` button
+    multiply.addEventListener(`click`, function()
+    {
+        firstValue = inputArray.join(``);
+        firstValue = parseInt(firstValue);
+        console.log(`Assigned First Value: ${firstValue}`);
+
+        if (total == 0)
+        {
+            total = 1 * firstValue;
+            console.log(`Total IF: `, firstValue)
+            console.log(`First Value IF: `, firstValue)
+        }
+        else
+        {
+            total = total * firstValue;
+            console.log(`Total ELSE: `, firstValue)
+            console.log(`First Value ELSE: `, firstValue)
+        }
+
+        operator = multiply.textContent;
+
+        total = total.toString();
+        updateDisplay(total);
+        total = parseInt(total);
+        console.log(`Total UPDATED: ${total}`)
+
+        inputArray = [`0`];
+        firstValue = ``;
+    });
+
+    // `=` button
+    equal.addEventListener(`click`, function()
+    {
+        if (operator === `+`)
+        {  
+            assignFirstValue();
+            addition();
+            updateCalcDisplay();
+        }
+
+        if (operator === `-`)
+        {
+            assignFirstValue();
+            subtraction();
+            updateCalcDisplay();
+        }
+
+        if (operator === `X`)
+        {
+            firstValue = inputArray.join(``);
+            firstValue = parseInt(firstValue);
+            console.log(`Assigned First Value: ${firstValue}`);
+
+            if (total == 0)
+            {
+                total = 1 * firstValue;
+                console.log(`Total IF EQUAL: `, firstValue)
+                console.log(`First Value IF EQUAL: `, firstValue)
+            }
+            else
+            {
+                total = total * firstValue;
+                console.log(`Total ELSE EQUAL: `, firstValue)
+                console.log(`First Value ELSE EQUAL: `, firstValue)
+            }
+
+            total = total.toString();
+            updateDisplay(total);
+            total = parseInt(total);
+            console.log(`Total EQUAL: ${total}`)
+
+            inputArray = [`1`];
+            console.log(`Array EQUAL: ${inputArray}`)
+            firstValue = ``;
+            console.log(`First Value EQUAL: ${firstValue}`)
+        }
+
+        operator = ``;
+    });
+}
+
+// Calls the program
+function mainProgram()
+{
+    checkInput();
+    operate();
+    clearDisplay();
+    backspace();
+}
+
 // Function call
-checkInput();
-clearDisplay();
-backspace();
+mainProgram();
