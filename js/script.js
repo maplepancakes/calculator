@@ -264,6 +264,9 @@ function operate()
     const equal = document.querySelector(`#equal`);
 
     let additionValue = ``;
+    let subtractionValue = ``;
+    let multiplicationValue = ``;
+    let divisionValue = ``;
 
     // `+` button
     add.addEventListener(`click`, function()
@@ -277,37 +280,26 @@ function operate()
         resetArray();
 
         operator = add.textContent;
-        
-        
-        /*counter++;
-        
-        if (counter === 1)
-        {
-            assignFirstValue();
-        }
-        else if (counter === 2)
-        {
-
-            counter = 0;
-        }
-        console.log(counter);
-
-        addition();
-
-        operator = add.textContent;
-
-        updateCalcDisplay();*/
-
     });
     // `-` button
     subtract.addEventListener(`click`, function()
     {
-        assignFirstValue();
-        subtraction();
+        subtractionValue = inputArray.join(``);
+        subtractionValue = parseInt(subtractionValue);
+
+        if (total === 0)
+        {
+            total = total + subtractionValue;
+        }
+        else if (total !== 0)
+        {   
+            total = total - subtractionValue;
+        }
+
+        updateDisplay(total);
+        resetArray();
 
         operator = subtract.textContent;
-
-        updateCalcDisplay();
     });
     // `X` button
     multiply.addEventListener(`click`, function()
@@ -347,7 +339,7 @@ function operate()
         {  
             additionValue = inputArray.join(``);
             additionValue = parseInt(additionValue);
-             
+
             total = total + additionValue;
 
             updateDisplay(total);
@@ -356,9 +348,20 @@ function operate()
 
         if (operator === `-`)
         {
-            assignFirstValue();
-            subtraction();
-            updateCalcDisplay();
+            subtractionValue = inputArray.join(``);
+            subtractionValue = parseInt(subtractionValue);
+
+            if (total === 0)
+            {
+                total = total + subtractionValue;
+            }
+            else if (total !== 0)
+            {   
+                total = total - subtractionValue;
+            }
+
+            updateDisplay(total);
+            resetArray();
         }
 
         if (operator === `X`)
