@@ -49,18 +49,16 @@ body
     "zero zero point equal";
     grid-auto-columns: 1fr;
     grid-auto-flow: column;
-    background-color: #424242;
     grid-gap: 10px;
+    background-color: #424242;
     padding: 10px;
 }
-
 
 #buttons-container button
 {
     text-align: center;
     font-size: 30px;
     font-family: "Raleway", Arial;
-    background-color: #616161;
     padding: 20px 0;
     color: white;
     border: 1px solid #FFA000;
@@ -77,21 +75,34 @@ body
     border: 1px solid #FF6F00;
 }
 
-#clear {grid-area: clear;}
+#secondary-display
+{
+    animation-name: swishing-gradient;
+    animation-duration: 3s;
+    animation-iteration-count: infinite;
+}
+
+@keyframes swishing-gradient
+{
+    0% {background: linear-gradient(45deg, #FFF9C4, #F9A825);}
+    100% {background-color: linear-gradient(90deg, #F9A825, #FFF9C4);}
+}
+
+#clear {grid-area: clear; background-color: #616161;}
 #secondary-display {grid-area: secondary-display;}
-#divide {grid-area: divide;}
-#seven {grid-area: seven;}
-#eight {grid-area: eight;}
-#nine {grid-area: nine;}
-#multiply {grid-area: multiply;}
-#four {grid-area: four;}
-#five {grid-area: five;}
-#six {grid-area: six;}
-#subtract {grid-area: subtract;}
-#one {grid-area: one;}
-#two {grid-area: two;}
-#three {grid-area: three;}
-#add {grid-area: add;}
-#zero {grid-area: zero;}
-#point {grid-area: point;}
-#equal {grid-area: equal;}
+#divide {grid-area: divide; background-color: #0277BD;}
+#seven {grid-area: seven; background-color: #616161;}
+#eight {grid-area: eight; background-color: #616161;}
+#nine {grid-area: nine; background-color: #616161;}
+#multiply {grid-area: multiply; background-color: #0277BD;}
+#four {grid-area: four; background-color: #616161;}
+#five {grid-area: five; background-color: #616161;}
+#six {grid-area: six; background-color: #616161;} 
+#subtract {grid-area: subtract; background-color: #0277BD;}
+#one {grid-area: one; background-color: #616161;}
+#two {grid-area: two; background-color: #616161;}
+#three {grid-area: three; background-color: #616161;}
+#add {grid-area: add; background-color: #0277BD;}
+#zero {grid-area: zero; background-color: #616161;}
+#point {grid-area: point; background-color: #616161;}
+#equal {grid-area: equal; background-color: #E65100;}
