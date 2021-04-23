@@ -1,23 +1,17 @@
 /*=============================================================*/
 /* GLOBAL VARIABLES                                            */
 /*=============================================================*/
-// Variable to store operator
-let operator = ``;
-
-// Operands
-let firstValue = ``;
-let secondValue = ``;
+// Specifies max characters on display
+const maxCharactersOnDisplay = 15;
 
 // Array for storing input
 let inputArray = [`0`];
 
-// Array for storing numbers for calculation
-let calcArray = [];
+// Variable to store operator
+let operator = ``;
 
 // Result
 let total = 0;
-
-let counter = 0;
 /*=============================================================*/
 /* FUNCTIONS                                                   */
 /*=============================================================*/
@@ -119,7 +113,7 @@ function checkInput()
             }
 
             // Checks that display does not exceed more than 15 characters
-            if (inputArray.length < 15)
+            if (inputArray.length < maxCharactersOnDisplay)
             {
                 // If there is more than one `.` input, disable the `.` button
                 if (dupArray.length > 0 && input[i].textContent === `.`)
