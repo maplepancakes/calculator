@@ -80,6 +80,12 @@ function backspace()
 // Updates display
 function updateDisplay(variable)
 {
+    // Rounds variable to nearest hundredth if variable is a number
+    if (typeof variable === `number`)
+    {
+        variable = Math.round(variable * 100)/100
+    }
+
     const display = document.querySelector(`#display`);
     
     display.textContent = variable;
@@ -161,7 +167,7 @@ function checkInput()
 function parseArray(variable, array)
 {
     variable = array.join(``)
-    variable = parseInt(variable);
+    variable = parseFloat(variable);
 
     return variable;
 }
@@ -236,7 +242,7 @@ function checkOperator()
     if (operator === `+`)
     {  
         additionValue = inputArray.join(``);
-        additionValue = parseInt(additionValue);
+        additionValue = parseFloat(additionValue);
 
         addition(additionValue);
 
@@ -246,7 +252,7 @@ function checkOperator()
     else if (operator === `-`)
     {
         subtractionValue = inputArray.join(``);
-        subtractionValue = parseInt(subtractionValue);
+        subtractionValue = parseFloat(subtractionValue);
 
         subtraction(subtractionValue);
 
@@ -256,7 +262,7 @@ function checkOperator()
     else if (operator === `X`)
     {
         multiplicationValue = inputArray.join(``);
-        multiplicationValue = parseInt(multiplicationValue);
+        multiplicationValue = parseFloat(multiplicationValue);
 
         multiplication(multiplicationValue);
 
@@ -266,7 +272,7 @@ function checkOperator()
     else if (operator === `/`)
     {
         divisionValue = inputArray.join(``);
-        divisionValue = parseInt(divisionValue);
+        divisionValue = parseFloat(divisionValue);
 
         division(divisionValue);
 
