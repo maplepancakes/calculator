@@ -210,6 +210,64 @@ function division()
     
 }
 
+function checkOperator()
+{
+    if (operator === `+`)
+    {  
+        additionValue = inputArray.join(``);
+        additionValue = parseInt(additionValue);
+
+        total = total + additionValue;
+
+        updateDisplay(total);
+        resetArray();
+    }
+    else if (operator === `-`)
+    {
+        subtractionValue = inputArray.join(``);
+        subtractionValue = parseInt(subtractionValue);
+
+        if (total === 0)
+        {
+            total = total + subtractionValue;
+        }
+        else if (total !== 0)
+        {   
+            total = total - subtractionValue;
+        }
+
+        updateDisplay(total);
+        resetArray();
+    }
+    else if (operator === `X`)
+    {
+        multiplicationValue = inputArray.join(``);
+        multiplicationValue = parseInt(multiplicationValue);
+
+        total = total * multiplicationValue;
+
+        updateDisplay(total);
+        resetArray();
+    }
+    else if (operator === `/`)
+    {
+        divisionValue = inputArray.join(``);
+        divisionValue = parseInt(divisionValue);
+
+        if (divisionValue === 0)
+        {
+            divisionValue = 1;
+        }
+        else
+        {
+            total = Math.round(total/divisionValue * 100)/100;
+        }
+
+        updateDisplay(total);
+        resetArray();
+    }
+}
+
 // For operating on calculator inputs
 function operate()
 {
@@ -228,6 +286,8 @@ function operate()
     // `+` button
     add.addEventListener(`click`, function()
     {
+        checkOperator();
+
         additionValue = inputArray.join(``);
         additionValue = parseInt(additionValue);
 
@@ -241,6 +301,8 @@ function operate()
     // `-` button
     subtract.addEventListener(`click`, function()
     {
+        checkOperator();
+
         subtractionValue = inputArray.join(``);
         subtractionValue = parseInt(subtractionValue);
 
@@ -261,6 +323,8 @@ function operate()
     // `X` button
     multiply.addEventListener(`click`, function()
     {
+        checkOperator();
+
         multiplicationValue = inputArray.join(``);
         multiplicationValue = parseInt(multiplicationValue);
 
@@ -289,6 +353,8 @@ function operate()
     });
     divide.addEventListener(`click`, function()
     {
+        checkOperator();
+        
         divisionValue = inputArray.join(``);
         divisionValue = parseInt(divisionValue);
         console.log(`Initial value: ${divisionValue}`)
@@ -324,60 +390,7 @@ function operate()
     // `=` button
     equal.addEventListener(`click`, function()
     {
-        if (operator === `+`)
-        {  
-            additionValue = inputArray.join(``);
-            additionValue = parseInt(additionValue);
-
-            total = total + additionValue;
-
-            updateDisplay(total);
-            resetArray();
-        }
-        else if (operator === `-`)
-        {
-            subtractionValue = inputArray.join(``);
-            subtractionValue = parseInt(subtractionValue);
-
-            if (total === 0)
-            {
-                total = total + subtractionValue;
-            }
-            else if (total !== 0)
-            {   
-                total = total - subtractionValue;
-            }
-
-            updateDisplay(total);
-            resetArray();
-        }
-        else if (operator === `X`)
-        {
-            multiplicationValue = inputArray.join(``);
-            multiplicationValue = parseInt(multiplicationValue);
-
-            total = total * multiplicationValue;
-
-            updateDisplay(total);
-            resetArray();
-        }
-        else if (operator === `/`)
-        {
-            divisionValue = inputArray.join(``);
-            divisionValue = parseInt(divisionValue);
-
-            if (divisionValue === 0)
-            {
-                divisionValue = 1;
-            }
-            else
-            {
-                total = Math.round(total/divisionValue * 100)/100;
-            }
-
-            updateDisplay(total);
-            resetArray();
-        }
+        checkOperator();
 
         operator = ``;
     });
