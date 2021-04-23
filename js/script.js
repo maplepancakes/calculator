@@ -58,6 +58,8 @@ let calcArray = [];
 // Result
 let total = 0;
 
+let counter = 0;
+
 // Resets first value to ``
 function resetFirstValue()
 {
@@ -213,7 +215,7 @@ function multiplication()
         console.log(`Total IF: `, firstValue)
         console.log(`First Value IF: `, firstValue)
     }
-    else
+    else if (total != 0)
     {
         total = total * firstValue;
         console.log(`Total ELSE: `, firstValue)
@@ -231,6 +233,13 @@ function assignFirstValue()
     firstValue = inputArray.join(``);
     firstValue = parseInt(firstValue);
     console.log(`Assigned First Value: ${firstValue}`);
+}
+
+function assignSecondValue()
+{
+    secondValue = inputArray.join(``);
+    secondValue = parseInt(secondValue);
+    console.log(`Assigned Second Value: ${secondValue}`);
 }
 
 function updateCalcDisplay()
@@ -254,15 +263,40 @@ function operate()
     const divide = document.querySelector(`#divide`);
     const equal = document.querySelector(`#equal`);
 
+    let additionValue = ``;
+
     // `+` button
     add.addEventListener(`click`, function()
     {
-        assignFirstValue();
+        additionValue = inputArray.join(``);
+        additionValue = parseInt(additionValue);
+
+        total = total + additionValue;
+
+        updateDisplay(total);
+        resetArray();
+
+        operator = add.textContent;
+        
+        
+        /*counter++;
+        
+        if (counter === 1)
+        {
+            assignFirstValue();
+        }
+        else if (counter === 2)
+        {
+
+            counter = 0;
+        }
+        console.log(counter);
+
         addition();
 
         operator = add.textContent;
 
-        updateCalcDisplay();
+        updateCalcDisplay();*/
 
     });
     // `-` button
@@ -288,7 +322,7 @@ function operate()
             console.log(`Total IF: `, firstValue)
             console.log(`First Value IF: `, firstValue)
         }
-        else
+        else if (total != 0)
         {
             total = total * firstValue;
             console.log(`Total ELSE: `, firstValue)
@@ -311,9 +345,13 @@ function operate()
     {
         if (operator === `+`)
         {  
-            assignFirstValue();
-            addition();
-            updateCalcDisplay();
+            additionValue = inputArray.join(``);
+            additionValue = parseInt(additionValue);
+             
+            total = total + additionValue;
+
+            updateDisplay(total);
+            resetArray();
         }
 
         if (operator === `-`)
