@@ -1,6 +1,6 @@
 # PROJECT STATUS: Completed
 
-For all your crunching number needs.
+### Objective: To demonstrate an understanding of basic algorithms.
 
 Created using HTML, CSS, and JavaScript.
 
